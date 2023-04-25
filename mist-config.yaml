@@ -1,0 +1,152 @@
+---
+# Note: indendentation is important
+# Verify formatting here: https://yaml-online-parser.appspot.com/
+
+# This file contains configuration information as well as event priorities and filtering
+
+# Mist plugin configuration
+# Mist passes the 'X-Mist-Signature-v2' header, containing a hash;
+config:
+  webhook_secret: 'Password'
+  auth_header: 'X-Mist-Signature-V2'
+  sql_table: 'mist_events'
+  chat_id: '19:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@thread.v2'
+
+
+# Events are organized by how critical they are
+# level-1: A critical alert, all details on teams
+# level-2: An important alert, send a summary on teams
+# level-3: Not so important alert, log only, no teams
+# level-4: Ignore completely
+
+# Syslog events on devices
+device_event:
+  GW_ALARM: 1
+  GW_MISTWA_CONFIGURATION_CLASH: 1
+  GW_CONFIGURED: 3
+  GW_CONFIG_GENERATED: 3
+  GW_CONFIG_FAILED: 1
+  GW_OSPF_NEIGHBOR_DOWN:
+    x.x.x.x: 1
+    x.x.x.x: 1
+    default: 3
+  GW_OSPF_NEIGHBOR_UP:
+    x.x.x.x: 1
+    x.x.x.x: 1
+    default: 3
+  GW_PORT_UP: 3
+  GW_RECONFIGURED: 3
+  GW_REJECTED: 2
+  GW_RESTART_BY_USER: 1
+  GW_VPN_PATH_DOWN: 2
+  GW_VPN_PATH_UP: 3
+  GW_VPN_PEER_DOWN:
+    x.x.x.x: 1
+    x.x.x.x: 1
+    default: 3
+  GW_VPN_PEER_UP: 3
+
+  SW_ALARM_CHASSIS_PSU: 1
+  SW_ALARM_CHASSIS_PEM: 2
+  SW_ALARM_OPTICS_IFACE_RX_LOW: 1
+  SW_BOUNCE_PORT: 3
+  SW_ALARM_CHASSIS_PSU: 2
+  SW_CONFIG_CHANGED_BY_USER: 2
+  SW_CONFIG_FAILED: 2
+  SW_CONFIG_GENERATED: 2
+  SW_CONFIGURED: 3
+  SW_CONNECTED: 2
+  SW_DDOS_PROTOCOL_VIOLATION_SET: 1
+  SW_DDOS_PROTOCOL_VIOLATION_CLEAR: 1
+  SW_DISCONNECTED: 1
+  SW_DOT1XD_USR_AUTHENTICATED: 3
+  SW_DYNAMIC_PORT_ASSIGNED: 4
+  SW_PORT_DOWN:
+    x.x.x.x: 1
+    x.x.x.x: 1
+    x.x.x.x: 1
+    default: 4
+  SW_PORT_UP: 4
+  SW_RADIUS_SERVER_UNRESPONSIVE: 1
+  SW_RECONFIGURED: 3
+  SW_RECOVERY_SNAPSHOT_REQUESTED: 3
+  SW_RECOVERY_SNAPSHOT_SUCCEEDED: 3
+  SW_REJECTED: 1
+  SW_RESTART_BY_USER: 2
+  SW_RESTARTED: 1
+  SW_STP_TOPO_CHANGED:
+    default: 1
+  SW_UPGRADE_BY_USER: 3
+  SW_UPGRADE_FAILED: 1
+  SW_UPGRADE_PENDING: 1
+  SW_VC_MASTER_CHANGED: 1
+  SW_VC_MEMBER_ADDED: 1
+  SW_ZTP_FINISHED: 2
+
+  AP_CONFIG_CHANGED_BY_RRM: 4
+  AP_CONFIG_CHANGED_BY_USER: 3
+  AP_CONFIGURED: 3
+  AP_CONNECTED: 2
+  AP_DISCONNECTED: 1
+  AP_DISCONNECTED_V1: 1
+  AP_RECONFIGURED: 3
+  AP_RESTARTED: 2
+  AP_RRM_ACTION: 4
+
+# Audit events, such as changes to Mist
+audit:
+  Acked alarm: 3
+  Add Label: 3
+  Add Policy: 2
+  Add WAN Edge: 4
+  Accessed Org: 3
+  Assign Device: 3
+  Bouncing ports: 3
+  Delete Label: 3
+  Invoked Webshell into Device: 2
+  Login with Role: 3
+  Update Device: 1
+  Update Label: 3
+  Update Network Template: 1
+  Update Webhook: 3
+  Update WLAN: 1
+  upgrade scheduled: 2
+
+# Alarms, such as devices going offline
+alarm:
+  ap_bad_cable: 1
+  device_down: 1
+  device_reconnected: 2
+  device_restarted: 2
+  infra_arp_failure: 2
+  infra_arp_success: 4
+  infra_dhcp_failure: 1
+  infra_dhcp_success: 3
+  infra_dns_failure: 1
+  infra_dns_success: 3
+  missing_vlan: 2
+  rogue_ap: 2
+  rogue_client: 2
+  switch_down: 1
+  switch_reconnected: 2
+  switch_restarted: 1
+  switch_stp_loop: 1
+  sw_alarm_chassis_psu: 1
+  sw_bad_optics: 2
+  vc_master_changed: 1
+
+# Device reboots
+updown:
+  SW_DISCONNECTED: 1
+  SW_CONNECTED: 2
+  SW_RESTARTED: 1
+  AP_DISCONNECTED: 1
+  AP_CONNECTED: 2
+  AP_RESTARTED: 2
+
+
+# Sometimes we just want to filter out some key words
+# Add these words to the list below
+filter:
+  - "SA Type: Shortcut"
+
