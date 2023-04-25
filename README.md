@@ -2,6 +2,9 @@
 Handles webhooks from the Juniper Mist cloud
 
 # Using the plugin
+Plugins need to be added to the 'plugins' directory of the Network Assistant, each in their own folder.
+Plugins are then enabled in the global configuration file
+
 ### Enabling Webhooks
     Webhooks need to be enabled in the Mist platform. This can be done for the entire Org, or per site
         NOTE: Enabling per org and per site will result in duplicate webhooks
